@@ -1,0 +1,8 @@
+{
+  "default": {
+    "paths": ["../../features/**/*.feature"],
+    "publishQuiet": true,
+    "require": ["./test/**/steps/application.ts", "./test/**/steps/common.ts"],
+    "requireModule": ["tsconfig-paths/register", "ts-node/register"]
+  }
+}

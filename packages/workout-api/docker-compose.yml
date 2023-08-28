@@ -1,0 +1,46 @@
+version: '3.9'
+services:
+  eventstore:
+    image: eventstore/eventstore:22.10.1-alpha-arm64v8
+    environment:
+      - EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP=true
+      - EVENTSTORE_INSECURE=true
+      - EVENTSTORE_RUN_PROJECTIONS=All
+    ports:
+      - 1113:1113
+      - 2113:2113
+    volumes:
+      - eventstore-data:/var/lib/eventstore
+      - eventstore-logs:/var/log/eventstore
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo-config:/data/configdb
+      - mongo-data:/data/db
+
+  mongo-express:
+    depends_on:
+      - mongo
+    image: mongo-express:latest
+    ports:
+      - 8081:8081
+    restart: unless-stopped
+
+  testing-eventstore:
+    image: eventstore/eventstore:22.10.1-alpha-arm64v8
+    environment:
+      - EVENTSTORE_ENABLE_ATOM_PUB_OVER_HTTP=true
+      - EVENTSTORE_INSECURE=true
+      - EVENTSTORE_RUN_PROJECTIONS=All
+    ports:
+      - 11113:1113
+      - 12113:2113
+
+volumes:
+  eventstore-data:
+  eventstore-logs:
+  mongo-config:
+  mongo-data:

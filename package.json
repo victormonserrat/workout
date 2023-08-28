@@ -1,0 +1,32 @@
+{
+  "name": "@victormonserrat/workout",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Victor Monserrat",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/deep-equals",
+    "packages/name-type",
+    "packages/either",
+    "packages/uuid",
+    "packages/ddd",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "format": "npm run format --workspaces --if-present",
+    "lint": "npm run lint --workspaces --if-present",
+    "postinstall": "npm run build --workspaces --if-present",
+    "preprepare": "npm run prepare --workspaces --if-present",
+    "start": "npm run start --workspaces --if-present",
+    "start:debug": "npm run start:debug --workspaces --if-present",
+    "start:dev": "npm run start:dev --workspaces --if-present",
+    "start:prod": "npm run start:prod --workspaces --if-present",
+    "test": "npm run test --workspaces --if-present",
+    "test:cov": "npm run test:cov --workspaces --if-present",
+    "test:e2e": "npm run test:e2e --workspaces --if-present",
+    "test:integration": "npm run test:integration --workspaces --if-present",
+    "test:unit": "npm run test:unit --workspaces --if-present"
+  }
+}
